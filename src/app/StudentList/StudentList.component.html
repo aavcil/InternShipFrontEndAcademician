@@ -1,0 +1,61 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-panel">
+
+  <div class="main-content">
+
+
+    <div class="row">
+  
+        <!-- <table class="table table-bordered table-striped mb-0" style="background-color: white;">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col"> #</th>
+              <th scope="col">Adı Soyadı</th>
+              <th scope="col">T.C. Kimlik NO</th>
+              <th scope="col">Profil Fotoğrafı</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of students; let i=index">
+              <th scope="row"> {{i+1}}</th>
+              <td>{{item.name}} {{item.surname}}</td>
+              <td>{{item.tcNo}}</td>
+              <td><img src="{{url}}{{item.profilePicture}}" alt="Avatar" class="avatar"></td>
+
+            </tr>
+
+          </tbody>
+        </table> -->
+
+
+        <table datatable [dtOptions]="opt" [dtTrigger]="dtTrigger" class="row-border hover" >
+            <thead>
+              <tr>
+                  <th> #</th>
+                  <th >Adı Soyadı</th>
+                  <th>T.C. Kimlik NO</th>
+                  <th>Profil Fotoğrafı</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of (students | async); let i=index">
+                    <th > {{i+1}}</th>
+                    <td>{{item.name}} {{item.surname}}</td>
+                    <td>{{item.tcNo}}</td>
+                    <td><img src="{{url}}/images/string_bb59bf96-022d-4104-8852-16d603f427a4.jpg" alt="Avatar" class="avatar"></td>
+      
+                  </tr>
+            </tbody>
+            </table>
+ 
+      <input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file"
+        accept=".xlsx">
+      <button type="button" class="btn btn-info" (click)="Upload()">Upload</button>
+    </div>
+  </div>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+</ngx-loading>

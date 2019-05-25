@@ -1,0 +1,131 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-panel">
+
+  <div class="main-content">
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Atamalar</h4>
+        <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title"
+          (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong><span class="text-primary">"Atama"</span> işlemini gerçekleştirmek istediğinizden emin
+            misiniz?</strong></p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Cancel</button>
+        <button type="button" ngbAutofocus class="btn btn-danger" (click)="setAssignment()">Ok</button>
+      </div>
+    </ng-template>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card card-chart" *ngIf="assignment.length!=0">
+          <div class="card-header">
+            <h4 class="card-title">Atamalar</h4>
+
+          </div>
+          <div class="card-body">
+            <div class="chart-area" style="text-align: center !important;">
+              <h5>Atama işlemleri başarıyla tamamlanmıştır.</h5><br>
+              <button type="button" class="btn btn-outline-success" [routerLink]="['/assignments']"
+                routerLinkActive="router-link-active">Atamaları Görüntüle</button>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+            </div>
+          </div>
+        </div>
+        <div class="card card-chart" *ngIf="assignment.length==0 ">
+          <div class="card-header">
+            <h4 class="card-title">Atamalar</h4>
+
+          </div>
+          <div class="card-body">
+            <div class="chart-area" style="text-align: center !important;">
+              <h5>Atamalar Henüz Yapılmamıştır. <span *ngIf="userGroup==0"> Atamaları Yapmak İçin Butona Tıklayın.
+                </span> </h5><br>
+              <button type="button" *ngIf="userGroup==0" class="btn btn-outline-success"
+                (click)="open(content)">Atamaları Yap</button>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!--  <div class="col-lg-4 col-md-6">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h5 class="card-category">Staj</h5>
+            <h4 class="card-title">Akademisyen Atamaları</h4>
+           <div ngbDropdown>
+              <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret"
+                ngbDropdownToggle>
+                <i class="now-ui-icons loader_gear"></i>
+              </button>
+              <div ngbDropdownMenu class="dropdown-menu-right">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item text-danger" href="#">Remove Data</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body" >
+            <div class="chart-area" style="top:52px;padding:0px 20px;position: relative;" *ngIf="assignment">
+              Sorumlu Akademisyen<br>
+              <h3> {{assignment.title}} {{assignment.name}} {{assignment.surname}}</h3>
+            </div>
+            <div class="chart-area" style="top:52px;padding:0px 20px;position: relative;" *ngIf="!assignment">
+                Henüz Akademisyen Atamaları Yapılmamıştır.
+
+              </div>
+
+          </div>
+          <div class="card-footer">
+            <div class="stats" *ngIf="timer/60==0">
+              <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+            </div>
+            <div class="stats" *ngIf="!timer/60==0" >
+              <i class="now-ui-icons arrows-1_refresh-69" (click)="getAssignment()"></i> {{(timer)}} minute ago
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h5 class="card-category">Email Statistics</h5>
+            <h4 class="card-title">24 Hours Performance</h4>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="now-ui-icons ui-2_time-alarm"></i> Last 7 days
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+
+  </div>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+</ngx-loading>

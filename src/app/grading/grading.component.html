@@ -1,0 +1,130 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-panel">
+
+  <div class="main-content">
+
+
+    <div class="row">
+      <h3> Değerlendirme </h3><br><br><br>
+      <div class="accordion" id="accordionExample" *ngIf="this.settings.final  && this.getGrade.final==0">
+        <div class="card" *ngFor="let item of (Days | async); let i =index">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse-' + i"
+                aria-expanded="false" [attr.aria-controls]="'collapse-' + i">
+                {{i+1}} {{item.title}}
+              </button>
+            </h2>
+          </div>
+          <div [attr.id]="'collapse-' + i" class="collapse" aria-labelledby="headingOne"
+            data-parent="#accordionExample">
+            <div class="card-body" >
+              <div class="row">
+                <div class="col-md-8" [innerHTML]="item.description"></div>
+                <div class="col-md-4">
+                <div class="row">
+                    <div class="col-sm-2 containerr" style="width: 60px;">
+                        <!-- <img class="imageShow" src="{{this.imageUrl + photo.url}}"> -->
+                    
+                      </div>
+                </div>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" *ngIf="this.getGrade.final!=0 && this.settings.final">
+
+        <blockquote style="width:98%;padding-top: 10px;margin: auto;">
+          <p class="blockquote blockquote-primary">
+            Bu öğrencinin final notu girişi tamamlanmıştır. 
+          </p>
+        </blockquote>
+      </div>
+      <div class="col-md-12" *ngIf="!this.settings.vize && !this.settings.final">
+
+          <blockquote style="width:98%;padding-top: 10px;margin: auto;">
+            <p class="blockquote blockquote-primary">
+              Henüz not girme işlemleri başlamamıştır. Sistem not girmeye kapalıdır.
+            </p>
+          </blockquote>
+        </div>
+      <div class="col-md-12" *ngIf="this.getGrade.vize!=0 && this.settings.vize">
+        <blockquote style="width:98%;padding-top: 10px;margin: auto;">
+          <p class="blockquote blockquote-primary">
+            Bu öğrencinin vize notu girişi tamamlanmıştır.               
+          </p>
+        </blockquote>
+      </div>
+      <div class="col-md-12" *ngIf="this.settings.final  && this.getGrade.final==0">
+        <div class="row">
+          <div class="col-md-6">
+            <li class="list-group-item">Final Notunu Giriniz:</li>
+          </div>
+          <div class="col-md-6">
+            <input type="number" class="form-control" #final (keyup)="0" placeholder="Final Notunu Giriniz"
+              aria-label="Final Notunu Giriniz." max="100" maxlength="100" style="background-color: white !important"
+              aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+              (click)="saveFinal(final.value)">Tamamla</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" *ngIf="this.settings.vize && this.getGrade.vize==0">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-group">
+              <li class="list-group-item" style="text-align: center;text-decoration: black"><b>Kriterler</b></li>
+              <li class="list-group-item">İşe Devamı</li>
+              <li class="list-group-item">Çalışma ve Gayreti</li>
+              <li class="list-group-item">Çalışma Ortamındaki Davranış ve Tutumu</li>
+              <li class="list-group-item">Temel Mühendislik Bilgisi Düzeyi</li>
+              <li class="list-group-item">Bireysel Çalışmalardaki Etkinliği ve Başarısı</li>
+              <li class="list-group-item">Takım Çalışmasında Uyumluluğu ve Başarımı</li>
+              <li class="list-group-item">Kendini Sözlü İfade Edebilme Yeteneği</li>
+              <li class="list-group-item">Akademisyen Notu (Max:30)</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <!-- <ul class="list-group">
+              <li class="list-group-item" *ngFor="let item of itemsList">
+                <input type="radio" [(ngModel)]="radioSelected" name="list_name" value="{{item.value}}" (change)="onItemChange($event)" />
+                {{item.name}}
+              </li>
+
+            </ul> -->
+            <table class="table table-light">
+              <thead>
+                <tr style="text-align: center">
+                  <th scope="col" style="width: 155px;" *ngFor="let item of itemsList">{{item.name}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ww of arrayOne(7);let q=index">
+                  <td *ngFor="let item of itemsList; let i =index" style="text-align: center">
+                    <input type="radio" name="{{q}}" value="{{item.value}}" (change)="onItemChange(item,$event)" />
+                  </td>
+                </tr>
+                <tr style="text-align: center;">
+                  <td colspan="5">
+                    <input style="width: 780px" type="number" min="0" max="30" maxlength="30" #box (keyup)="0">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-12" style="text-align:right">
+          <button type="button" class="btn btn-info" (click)="saveNote(box.value)">Tamamla</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+</ngx-loading>

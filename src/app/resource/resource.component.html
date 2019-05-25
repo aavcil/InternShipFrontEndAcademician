@@ -1,0 +1,90 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-panel">
+
+  <div class="main-content">
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="title">Başvurular</h5>
+          </div>
+          <ngb-tabset>
+            <ngb-tab title="Onay Bekleyenler">
+              <ng-template ngbTabContent>
+                <div class="card-body">
+
+                  <div class="card" style="width: 17rem; margin:10px" *ngFor="let item of (RecoursesFalse | async)">
+                    <img id="myImg" src="{{imageUrl+item.url}}" (click)="openLg(content,item.url)" alt="Snow"
+                      style="width:100%;max-width:300px;height:175px;">
+                    <div class="card-body" style="height: 200px;">
+                      <h5 class="card-title">{{item.name}} {{item.surname}}</h5>
+                      <p class="card-text" style="font-size: 0.8vw"><b>Başvuru Tarihi :</b>
+                        {{item.date | date:"fullDate"}}</p>                      
+                            <a (click)="setRecourse(item.studentId)" class="btn btn-success">Onayla</a>
+                            <a (click)="setRecourseReject(item.studentId)" class="btn btn-danger">Reddet</a>                   
+
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+              <ng-template ngbTabTitle>Tümü</ng-template>
+              <ng-template ngbTabContent>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="card-body">
+                      <div class="card" style="width: 17rem;margin:10px" *ngFor="let item of (Recourses | async)">
+                        <img id="myImg" src="{{imageUrl+item.url}}" (click)="openLg(content,item.url)" alt="Snow"
+                          style="width:100%;max-width:300px;height:175px;max-height: 175px;">
+                        <div class="card-body" style="height: 200px;">
+                          <h5 class="card-title">{{item.name}} {{item.surname}}</h5>
+                          <p class="card-text" style="font-size: 0.8vw"><b>Başvuru Tarihi :</b>
+                            {{item.date | date:"fullDate"}}</p>
+                          <div *ngIf="item.isApproved==0">
+                            <a (click)="setRecourse(item.studentId)" class="btn btn-success">Onayla</a>
+                            <a (click)="setRecourseReject(item.studentId)" class="btn btn-danger">Reddet</a>
+                          </div>
+                          <p *ngIf="item.isApproved==2" style="text-align: center;font-size: 0.6vw;">
+                              <ngb-alert type="danger" [dismissible]="false" ><strong>Reddedildi</strong> </ngb-alert>
+                            </p>
+                            <p *ngIf="item.isApproved==1" style="text-align: center;font-size: 0.6vw;">
+                                <ngb-alert type="success" [dismissible]="false"><strong>Onaylandı</strong> </ngb-alert>
+                              </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+</ngx-loading>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Başvuru Belgesi</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img src="{{imageUrl+popupUrl}}" style="width:100%;max-width: 2000px;max-height: 3000px" />
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

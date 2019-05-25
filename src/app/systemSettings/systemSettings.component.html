@@ -1,0 +1,85 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-panel">
+
+  <div class="main-content">
+
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h4 class="card-title">Not Girme Ayarları</h4>
+          </div>
+          <div class="card-body">
+            <div class="chart-area" style="text-align: center !important;">
+                <!-- <div class="custom-control custom-radio" >
+                  <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios"
+                    (change)="onItemChange(0)">
+                  <label class="custom-control-label" for="defaultGroupExample1">Not Girişi Kapalı</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios"
+                    (change)="onItemChange(1)">
+                  <label class="custom-control-label" for="defaultGroupExample2">Vize Girişini Aç</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios"
+                    (change)="onItemChange(2)">
+                  <label class="custom-control-label" for="defaultGroupExample3">Final Girişini aç</label>
+                </div> -->
+                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" >
+                  <label ngbButtonLabel class="btn btn-primary" style="color:white">
+                    <input ngbButton type="radio" (change)="onItemChange(0)"[value]="0" > Not Girişi Kapalı
+                  </label>
+                  <label ngbButtonLabel class="btn btn-primary" style="color:white">
+                    <input ngbButton type="radio" (change)="onItemChange(1)" value="1"> Vize Girişi Açık
+                  </label>
+                  <label ngbButtonLabel class="btn btn-primary" style="color:white">
+                    <input ngbButton type="radio" (change)="onItemChange(2)" [value]="2"> Final Girişi Açık
+                  </label>
+                </div>
+                
+              <br>
+              <br>
+              <br>
+              <button type="button" class="btn btn-outline-success" (click)="open()">Ayarları Kaydet</button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h4 class="card-title">Staj Tarihi Ekleme</h4>
+          </div>
+          <div class="card-body">
+            <div class="chart-area" style="text-align: center !important;height: 400px;">
+                <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+                  </ngb-datepicker>
+                  
+                  <ng-template #t let-date let-focused="focused">
+                    <span class="custom-day"
+                          [class.focused]="focused"
+                          [class.range]="isRange(date)"
+                          [class.faded]="isHovered(date) || isInside(date)"
+                          (mouseenter)="hoveredDate = date"
+                          (mouseleave)="hoveredDate = null">
+                      {{ date.day }}
+                    </span>
+                  </ng-template>  
+
+              <button type="button" class="btn btn-outline-success" (click)="change()">Ayarları Kaydet</button>
+
+            </div>
+          </div>
+        </div>
+        <!--  -->
+
+      </div>
+   
+    </div>
+  </div>
+</div>
