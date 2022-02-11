@@ -26,7 +26,7 @@
     "@auth0/angular-jwt": "^2.1.0",
     "@kolkov/angular-editor": "^0.13.1",
     "@ng-bootstrap/ng-bootstrap": "^4.0.4",
-    "ajv": "6.7.0",
+    "ajv": "6.12.3",
     "ajv-keywords": "3.3.0",
     "alertifyjs": "^1.11.2",
     "angular-bootstrap-md": "^7.5.1",
