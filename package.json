@@ -38,7 +38,7 @@
     "chart.js": "2.7.3",
     "chartist": "0.11.0",
     "classlist.js": "1.1.20150312",
-    "copy-webpack-plugin": "4.6.0",
+    "copy-webpack-plugin": "11.0.0",
     "core-js": "2.6.3",
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
@@ -50,7 +50,7 @@
     "jwt-decode": "^2.2.0",
     "ng-circle-progress": "^1.4.0",
     "ng2-charts": "1.6.0",
-    "ng2-pdf-viewer": "^5.2.3",
+    "ng2-pdf-viewer": "^5.3.4",
     "ngx-accordion": "0.0.17",
     "ngx-loading": "^3.0.1",
     "ngx-toastr": "^9.1.1",
@@ -65,7 +65,7 @@
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular-devkit/build-angular": "~15.0.4",
     "@angular/cli": "~7.3.1",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
